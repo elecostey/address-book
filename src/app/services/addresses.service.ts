@@ -11,7 +11,6 @@ export class AddressesService {
   addresses: Array<Address> = [];
 
   public newAddressSubject = new Subject<any>();
-  public addressToDelete = new Subject<any>();
 
   constructor(private http: Http) { }
 

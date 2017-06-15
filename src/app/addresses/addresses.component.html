@@ -11,18 +11,41 @@
     </thead>
     <tbody>
       <tr *ngFor="let address of addresses">
-        <td>{{ address.surname }}</td>
-        <td>{{ address.name }}</td>
-        <td>{{ address.address }}</td>
-        <td>{{ address.city}}</td>
+        <td *ngIf="!address.edit">{{ address.surname }}</td>
+        <td *ngIf="!address.edit">{{ address.name }}</td>
+        <td *ngIf="!address.edit">{{ address.address }}</td>
+        <td *ngIf="!address.edit">{{ address.city}}</td>
+
+        <td *ngIf="address.edit"><input [(ngModel)] = "surnameEdited" type="text" value="{{ address.surname }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "nameEdited" type="text" value="{{ address.name }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addressEdited" type="text" value="{{ address.address }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "cityEdited" type="text" value="{{ address.city }}"></td>
+
         <td>
           <button
+            (click)= "updateAddress(address); address.edit = !address.edit"
+            class="btn btn-sm btn-warning">
+            Edit
+          </button>
+        </td>
+
+        <td>
+          <button
+            *ngIf="!address.edit"
             (click)= "deleteAddress(address)"
             class="btn btn-sm btn-danger">
             Delete
           </button>
+          <button
+            *ngIf="address.edit"
+            (click)= "saveAddress(address); address.edit = !address.edit"
+            class="btn btn-sm btn-success">
+            Save
+          </button>
         </td>
       </tr>
+
+
     </tbody>
   </table>
 </div>
