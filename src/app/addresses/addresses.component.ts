@@ -14,13 +14,6 @@ export class AddressesComponent implements OnInit {
   addresses: Array<Address> = [];
   error: string;
 
-  //2 way data binding holders
-  surnameEdited = "";
-  nameEdited = "";
-  addressEdited = "";
-  cityEdited = "";
-
-
   constructor(
     private http: Http,
     private addressesService : AddressesService
@@ -38,23 +31,20 @@ export class AddressesComponent implements OnInit {
     )
   }
 
+  updateAddress(address){
+    console.log("update address:"+address.surname);
+  }
+
+  saveAddress(address) {
+    console.log("save address:"+address.surname);
+  }
+
   deleteAddress(address) {
     let index = this.addresses.indexOf(address);
     this.addresses.splice(index, 1);
   }
 
-  saveAddress(address) {
-    let index = this.addresses.indexOf(address);
-    this.addresses[index].surname = this.surnameEdited;
-    this.addresses[index].name = this.nameEdited;
-    this.addresses[index].address = this.addressEdited;
-    this.addresses[index].city = this.cityEdited;
-  }
-
-  updateAddress(address){
-    this.surnameEdited = address.surname;
-    this.nameEdited = address.name;
-    this.addressEdited = address.address;
-    this.cityEdited = address.city;
+  trackByIndex(index: number, value: Address) {
+    return index;
   }
 }

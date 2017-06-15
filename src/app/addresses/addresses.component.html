@@ -10,23 +10,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let address of addresses">
+      <tr *ngFor="let address of addresses; let i = index; trackBy:trackByIndex">
         <td *ngIf="!address.edit">{{ address.surname }}</td>
         <td *ngIf="!address.edit">{{ address.name }}</td>
         <td *ngIf="!address.edit">{{ address.address }}</td>
         <td *ngIf="!address.edit">{{ address.city}}</td>
 
-        <td *ngIf="address.edit"><input [(ngModel)] = "surnameEdited" type="text" value="{{ address.surname }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "nameEdited" type="text" value="{{ address.name }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "addressEdited" type="text" value="{{ address.address }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "cityEdited" type="text" value="{{ address.city }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].surname" type="text" value="{{ address.surname }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].name" type="text" value="{{ address.name }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].address" type="text" value="{{ address.address }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].city" type="text" value="{{ address.city }}"></td>
 
         <td>
           <button
-            (click)= "updateAddress(address); address.edit = !address.edit"
+          *ngIf="!address.edit"
+            (click)= "address.edit = !address.edit"
             class="btn btn-sm btn-warning">
             Edit
           </button>
+
         </td>
 
         <td>
@@ -38,7 +40,7 @@
           </button>
           <button
             *ngIf="address.edit"
-            (click)= "saveAddress(address); address.edit = !address.edit"
+            (click)= "address.edit = !address.edit"
             class="btn btn-sm btn-success">
             Save
           </button>
