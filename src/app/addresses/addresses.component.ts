@@ -25,6 +25,16 @@ export class AddressesComponent implements OnInit {
       data => this.addresses = data,
       error => this.error = error.statusText
     );
+
+    this.addressesService.newAddressSubject.subscribe(
+      data => this.addresses = [data, ...this.addresses]
+    )
   }
+
+  deleteAddress(address) {
+        let index = this.addresses.indexOf(address);
+        this.addresses.splice(index, 1);
+
+    }
 
 }
