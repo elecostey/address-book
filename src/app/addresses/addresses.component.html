@@ -6,7 +6,8 @@
         <th>Name</th>
         <th>Address</th>
         <th>City</th>
-        <th>delete</th>
+        <th id='edit-delete'></th>
+
       </tr>
     </thead>
     <tbody>
@@ -16,34 +17,30 @@
         <td *ngIf="!address.edit">{{ address.address }}</td>
         <td *ngIf="!address.edit">{{ address.city}}</td>
 
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].surname" type="text" value="{{ address.surname }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].name" type="text" value="{{ address.name }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].surname" id="surname" type="text" value="{{ address.surname }}"></td>
+        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].name" id="name"type="text" value="{{ address.name }}"></td>
         <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].address" type="text" value="{{ address.address }}"></td>
         <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].city" type="text" value="{{ address.city }}"></td>
 
         <td>
-          <button
-          *ngIf="!address.edit"
-            (click)= "address.edit = !address.edit"
-            class="btn btn-sm btn-warning">
-            Edit
-          </button>
-
-        </td>
-
-        <td>
-          <button
+          <i
             *ngIf="!address.edit"
-            (click)= "deleteAddress(address)"
-            class="btn btn-sm btn-danger">
-            Delete
-          </button>
-          <button
-            *ngIf="address.edit"
+            class="fa fa-pencil"
             (click)= "address.edit = !address.edit"
-            class="btn btn-sm btn-success">
-            Save
-          </button>
+            aria-hidden="true">
+          </i>
+          <i
+            *ngIf="!address.edit"
+            class="fa fa-times"
+            (click)= "deleteAddress(address)"
+            aria-hidden="true">
+          </i>
+          <i
+            *ngIf="address.edit"
+            class="fa fa-check"
+            (click)= "address.edit = !address.edit"
+            aria-hidden="true">
+          </i>
         </td>
       </tr>
 

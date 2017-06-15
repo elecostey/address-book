@@ -31,14 +31,6 @@ export class AddressesComponent implements OnInit {
     )
   }
 
-  updateAddress(address){
-    console.log("update address:"+address.surname);
-  }
-
-  saveAddress(address) {
-    console.log("save address:"+address.surname);
-  }
-
   deleteAddress(address) {
     let index = this.addresses.indexOf(address);
     this.addresses.splice(index, 1);
