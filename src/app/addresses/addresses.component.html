@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let address of addresses; let i = index;">
+      <tr *ngFor="let address of addresses; let i = index; trackBy:trackByIndex">
         <td *ngIf="!address.edit">{{ address.surname }}</td>
         <td *ngIf="!address.edit">{{ address.name }}</td>
         <td *ngIf="!address.edit">{{ address.address }}</td>

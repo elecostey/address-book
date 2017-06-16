@@ -35,4 +35,8 @@ export class AddressesComponent implements OnInit {
     let index = this.addresses.indexOf(address);
     this.addresses.splice(index, 1);
   }
+
+  trackByIndex(index: number, value: Address) {
+    return index;
+  }
 }
