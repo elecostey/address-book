@@ -2,6 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.1.
 
+## Install node.js with npm
+
+In order to run the app node.js needs to be installed. Download link: https://nodejs.org/en/download/
+
+## Clone this project in a repository
+
+Run `git clone https://github.com/elecostey/address-book.git`
+
+## Install the dependencies in the local node_modules folder
+
+Run `npm install`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
