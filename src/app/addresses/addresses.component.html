@@ -5,7 +5,7 @@
         <th>Surname</th>
         <th>Name</th>
         <th>Address</th>
-        <th>City</th>
+        <th class="hidden-xs hidden-sm">City</th>
         <th id='edit-delete'></th>
 
       </tr>
@@ -15,12 +15,12 @@
         <td *ngIf="!address.edit">{{ address.surname }}</td>
         <td *ngIf="!address.edit">{{ address.name }}</td>
         <td *ngIf="!address.edit">{{ address.address }}</td>
-        <td *ngIf="!address.edit">{{ address.city}}</td>
+        <td class="hidden-xs" *ngIf="!address.edit">{{ address.city}}</td>
 
         <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].surname" id="surname" type="text" value="{{ address.surname }}"></td>
         <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].name" id="name"type="text" value="{{ address.name }}"></td>
         <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].address" type="text" value="{{ address.address }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].city" type="text" value="{{ address.city }}"></td>
+        <td class="hidden-xs" *ngIf="address.edit"><input [(ngModel)] = "addresses[i].city" type="text" value="{{ address.city }}"></td>
 
         <td>
           <i
@@ -43,8 +43,6 @@
           </i>
         </td>
       </tr>
-
-
     </tbody>
   </table>
 </div>

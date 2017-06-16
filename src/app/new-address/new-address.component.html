@@ -52,9 +52,10 @@
           <button
             class="btn btn-primary listing-button"
             type="submit"
-            ng-show="NewAddress">
+            [disabled]="!newAddress.form.valid">
               Add
           </button>
+          <span class="alert alert-warning" *ngIf="!newAddress.form.valid">Please fill in all the fields</span>
         </div>
       </form>
 
