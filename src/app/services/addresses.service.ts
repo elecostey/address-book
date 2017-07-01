@@ -11,6 +11,7 @@ export class AddressesService {
   addresses: Array<Address> = [];
 
   public newAddressSubject = new Subject<any>();
+  public editedAddressSubject = new Subject<any>();
 
   constructor(private http: Http) { }
 
@@ -20,6 +21,11 @@ export class AddressesService {
 
   addNewAddress(data) {
     this.newAddressSubject.next(data);
+  }
+
+  editAddress(data) {
+    this.editedAddressSubject.next(data);
+    console.log('called from service:' + this.editedAddressSubject);
   }
 
 

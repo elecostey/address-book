@@ -13,6 +13,7 @@ export class AddressesComponent implements OnInit {
 
   addresses: Array<Address> = [];
   error: string;
+  editedAddress: Address;
 
   constructor(
     private http: Http,
@@ -29,10 +30,17 @@ export class AddressesComponent implements OnInit {
     this.addressesService.newAddressSubject.subscribe(
       data => this.addresses = [data, ...this.addresses]
     )
+
+
   }
 
   deleteAddress(address) {
     let index = this.addresses.indexOf(address);
     this.addresses.splice(index, 1);
+  }
+
+  onEditAddress(address): void {
+    console.log('called from address component:'+ address.name);
+    this.addressesService.editAddress(address);
   }
 }
