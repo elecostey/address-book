@@ -23,9 +23,12 @@ export class AddressesService {
     this.newAddressSubject.next(data);
   }
 
+  saveAddressEdit(data,index){
+    this.editedAddressSubject.next(data);
+  }
+
   editAddress(data) {
     this.editedAddressSubject.next(data);
-    console.log('called from service:' + this.editedAddressSubject);
   }
 
 

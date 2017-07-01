@@ -11,7 +11,8 @@ import { Address } from './../address';
 })
 export class NewAddressComponent implements OnInit {
 
-
+  isInEditMode = false;
+  address: Address;
   editedAddressInComponent: Address;
   @ViewChild('newAddress') newAddress;
 
@@ -27,16 +28,22 @@ export class NewAddressComponent implements OnInit {
         this.newAddress.controls['name'].setValue(this.editedAddressInComponent.name);
         this.newAddress.controls['address'].setValue(this.editedAddressInComponent.address);
         this.newAddress.controls['city'].setValue(this.editedAddressInComponent.city);
+        this.isInEditMode = true;
       }
 
     )
 
   }
 
+
   onAddressSubmit(data): void {
     this.addressesService.addNewAddress(data);
     this.newAddress.reset();
   }
 
-
+  onAddressEdited(data,index): void{
+    this.addressesService.saveAddressEdit(data,index);
+    this.isInEditMode = false;
+    this.newAddress.reset();
+  }
 }

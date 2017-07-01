@@ -1,12 +1,15 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4>Add a new contact</h4>
+
+      <h4 *ngIf="isInEditMode">Edit</h4>
+      <h4 *ngIf="!isInEditMode">Add a new contact</h4>
+
     </div>
 
     <div class="panel-body">
 
-      <form #newAddress="ngForm" (ngSubmit)="onAddressSubmit(newAddress.value)">
+      <form #newAddress="ngForm">
         <div class="form-group col-sm-6">
           <label for="surname" class="">Surname</label>
           <input
@@ -50,10 +53,19 @@
 
         <div class="form-group col-sm-12">
           <button
+            *ngIf="!isInEditMode"
             class="btn btn-primary listing-button"
             type="submit"
+            (click)= "onAddressSubmit(newAddress.value)"
             [disabled]="!newAddress.form.valid">
               Add
+          </button>
+          <button
+           *ngIf="isInEditMode"
+            class="btn btn-primary listing-button"
+            (click)= "onAddressEdited(newAddress.value)"
+            [disabled]="!newAddress.form.valid">
+              Save
           </button>
           <span class="alert alert-warning" *ngIf="!newAddress.form.valid">Please fill in all the fields</span>
         </div>

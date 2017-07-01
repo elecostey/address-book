@@ -12,8 +12,10 @@ import { Address } from './../address';
 export class AddressesComponent implements OnInit {
 
   addresses: Array<Address> = [];
+  editedAddressInComponent: Address;
+  editAddressIndex = 0;
   error: string;
-  editedAddress: Address;
+
 
   constructor(
     private http: Http,
@@ -31,6 +33,14 @@ export class AddressesComponent implements OnInit {
       data => this.addresses = [data, ...this.addresses]
     )
 
+    this.addressesService.editedAddressSubject.subscribe(
+      data => {
+        this.editedAddressInComponent = data;
+        this.addresses[this.editAddressIndex] = this.editedAddressInComponent;
+
+      }
+    )
+
 
   }
 
@@ -40,7 +50,7 @@ export class AddressesComponent implements OnInit {
   }
 
   onEditAddress(address): void {
-    console.log('called from address component:'+ address.name);
+    this.editAddressIndex = this.addresses.indexOf(address);
     this.addressesService.editAddress(address);
   }
 }
