@@ -23,13 +23,8 @@ export class AddressesService {
     this.newAddressSubject.next(data);
   }
 
-  saveAddressEdit(data,index){
+  saveAddressEdit(data) {
     this.editedAddressSubject.next(data);
   }
-
-  editAddress(data) {
-    this.editedAddressSubject.next(data);
-  }
-
 
 }

@@ -12,8 +12,7 @@ import { Address } from './../address';
 export class NewAddressComponent implements OnInit {
 
   isInEditMode = false;
-  address: Address;
-  editedAddressInComponent: Address;
+
   @ViewChild('newAddress') newAddress;
 
   constructor(
@@ -23,27 +22,24 @@ export class NewAddressComponent implements OnInit {
   ngOnInit() {
     this.addressesService.editedAddressSubject.subscribe(
       data => {
-        this.editedAddressInComponent = data;
-        this.newAddress.controls['surname'].setValue(this.editedAddressInComponent.surname);
-        this.newAddress.controls['name'].setValue(this.editedAddressInComponent.name);
-        this.newAddress.controls['address'].setValue(this.editedAddressInComponent.address);
-        this.newAddress.controls['city'].setValue(this.editedAddressInComponent.city);
+        this.newAddress.controls['surname'].setValue(data.surname);
+        this.newAddress.controls['name'].setValue(data.name);
+        this.newAddress.controls['address'].setValue(data.address);
+        this.newAddress.controls['city'].setValue(data.city);
         this.isInEditMode = true;
       }
-
     )
-
   }
-
 
   onAddressSubmit(data): void {
     this.addressesService.addNewAddress(data);
     this.newAddress.reset();
   }
 
-  onAddressEdited(data,index): void{
-    this.addressesService.saveAddressEdit(data,index);
+  onSaveAddress(data): void {
+    this.addressesService.saveAddressEdit(data);
     this.isInEditMode = false;
     this.newAddress.reset();
+
   }
 }

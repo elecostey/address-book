@@ -63,7 +63,7 @@
           <button
            *ngIf="isInEditMode"
             class="btn btn-primary listing-button"
-            (click)= "onAddressEdited(newAddress.value)"
+            (click)= "onSaveAddress(newAddress.value)"
             [disabled]="!newAddress.form.valid">
               Save
           </button>

@@ -12,10 +12,8 @@ import { Address } from './../address';
 export class AddressesComponent implements OnInit {
 
   addresses: Array<Address> = [];
-  editedAddressInComponent: Address;
-  editAddressIndex = 0;
+  editedAddressIndex: number;
   error: string;
-
 
   constructor(
     private http: Http,
@@ -34,23 +32,16 @@ export class AddressesComponent implements OnInit {
     )
 
     this.addressesService.editedAddressSubject.subscribe(
-      data => {
-        this.editedAddressInComponent = data;
-        this.addresses[this.editAddressIndex] = this.editedAddressInComponent;
-
-      }
+      data => this.addresses[this.editedAddressIndex] = data
     )
-
-
   }
 
-  deleteAddress(address) {
-    let index = this.addresses.indexOf(address);
-    this.addresses.splice(index, 1);
+  deleteAddress(address, i) {
+    this.addresses.splice(i, 1);
   }
 
-  onEditAddress(address): void {
-    this.editAddressIndex = this.addresses.indexOf(address);
-    this.addressesService.editAddress(address);
+  onEditAddress(address, i) {
+    this.editedAddressIndex = i;
+    this.addressesService.saveAddressEdit(address);
   }
 }

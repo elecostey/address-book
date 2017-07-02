@@ -5,40 +5,25 @@
         <th>Surname</th>
         <th>Name</th>
         <th>Address</th>
-        <th class="hidden-xs hidden-sm">City</th>
+        <th class="hidden-xs">City</th>
         <th id='edit-delete'></th>
-
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let address of addresses; let i = index;">
-        <td *ngIf="!address.edit">{{ address.surname }}</td>
-        <td *ngIf="!address.edit">{{ address.name }}</td>
-        <td *ngIf="!address.edit">{{ address.address }}</td>
-        <td class="hidden-xs" *ngIf="!address.edit">{{ address.city}}</td>
-
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].surname" id="surname" type="text" value="{{ address.surname }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].name" id="name"type="text" value="{{ address.name }}"></td>
-        <td *ngIf="address.edit"><input [(ngModel)] = "addresses[i].address" type="text" value="{{ address.address }}"></td>
-        <td class="hidden-xs" *ngIf="address.edit"><input [(ngModel)] = "addresses[i].city" type="text" value="{{ address.city }}"></td>
-
+      <tr *ngFor="let address of addresses; let i = index">
+        <td>{{ address.surname }}</td>
+        <td>{{ address.name }}</td>
+        <td>{{ address.address }}</td>
+        <td class="hidden-xs">{{ address.city}}</td>
         <td>
           <i
-            *ngIf="!address.edit"
             class="fa fa-pencil"
-            (click)= "onEditAddress(address)"
+            (click)= "onEditAddress(addresses[i],i)"
             aria-hidden="true">
           </i>
           <i
-            *ngIf="!address.edit"
             class="fa fa-times"
-            (click)= "deleteAddress(address)"
-            aria-hidden="true">
-          </i>
-          <i
-            *ngIf="address.edit"
-            class="fa fa-check"
-            (click)= "address.edit = !address.edit"
+            (click)= "deleteAddress(addresses[i],i)"
             aria-hidden="true">
           </i>
         </td>
